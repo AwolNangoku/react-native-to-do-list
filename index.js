@@ -13,5 +13,4 @@ const AppWrapper = () => (
   </Provider>
 );
 
-AppRegistry.registerComponent(appName, () => AppWrapper
-);
+AppRegistry.registerComponent(appName, () => AppWrapper);

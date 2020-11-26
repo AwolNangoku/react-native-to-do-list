@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  GestureResponderEvent,
-} from 'react-native';
+import {Text, TouchableOpacity, GestureResponderEvent} from 'react-native';
+import {Container, NameContainer, ActionContainer} from './styled';
 
 type Props = {
   name: string;
@@ -12,32 +8,41 @@ type Props = {
   viewRowItem: () => GestureResponderEvent | void;
 };
 
+type ActionProps = {
+  actionTitle: string;
+  titleColor: string;
+  action: () => void;
+};
+
+const RowItemAction: React.FC<ActionProps> = ({
+  actionTitle,
+  titleColor,
+  action,
+}) => (
+  <ActionContainer>
+    <TouchableOpacity onPress={action}>
+      <Text style={{color: titleColor}}>{actionTitle}</Text>
+    </TouchableOpacity>
+  </ActionContainer>
+);
+
 const RowToDoItem: React.FC<Props> = ({name, removeRowItem, viewRowItem}) => (
-  <View
-    style={{
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-    <View style={{padding: 20, alignItems: 'center', justifyContent: 'center'}}>
+  <Container>
+    <NameContainer>
       <Text>{name && name.toUpperCase()}</Text>
-    </View>
-    <View
-      style={{
-        padding: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <TouchableOpacity onPress={removeRowItem}>
-        <Text style={{color: '#ff3100'}}>Delete</Text>
-      </TouchableOpacity>
-    </View>
-    <View style={{padding: 20, alignItems: 'center', justifyContent: 'center'}}>
-      <TouchableOpacity onPress={viewRowItem}>
-        <Text style={{color: '#00a8fd'}}>Edit details</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
+    </NameContainer>
+
+    <RowItemAction
+      actionTitle="Delete"
+      titleColor="#ff3100"
+      action={removeRowItem}
+    />
+
+    <RowItemAction
+      actionTitle="Edit details"
+      titleColor="#00a8fd"
+      action={viewRowItem}
+    />
+  </Container>
 );
 export default RowToDoItem;
