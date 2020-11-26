@@ -10,8 +10,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "react-native-community/async-storage",
+    "@reduxjs/toolkit": "^1.4.0",
     "react": "16.13.1",
-    "react-native": "0.63.3"
+    "react-native": "0.63.3",
+    "react-redux": "^7.2.2",
+    "react-router-native": "^5.2.0",
+    "redux-persist": "^6.0.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
