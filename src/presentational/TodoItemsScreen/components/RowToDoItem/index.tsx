@@ -15,7 +15,7 @@ type Props = {
 const RowToDoItem: React.FC<Props> = ({name, removeRowItem, viewRowItem}) => (
   <View style={{display: 'flex', flexDirection: 'row'}}>
     <View style={{padding: 20, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>{name.toUpperCase()}</Text>
+      <Text>{name && name.toUpperCase()}</Text>
     </View>
     <View
       style={{

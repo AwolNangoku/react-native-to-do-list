@@ -3,11 +3,16 @@ import {View, Text, TextInput, Button} from 'react-native';
 import {Todo} from '../../../../services/appState/todosList/types';
 
 type Props = {
+  todItemName?: string;
   setToDoItemName: (itemName: string) => void;
   addItemToTodList: (item: Todo) => void;
 };
 
-const AddItemField: React.FC<Props> = ({setToDoItemName, addItemToTodList}) => (
+const AddItemField: React.FC<Props> = ({
+  todItemName,
+  setToDoItemName,
+  addItemToTodList,
+}) => (
   <View style={{padding: 10}}>
     <View>
       <View>
@@ -15,6 +20,7 @@ const AddItemField: React.FC<Props> = ({setToDoItemName, addItemToTodList}) => (
         <TextInput
           placeholder="Enter list item name here..."
           onChangeText={setToDoItemName}
+          value={todItemName}
         />
       </View>
       <View>

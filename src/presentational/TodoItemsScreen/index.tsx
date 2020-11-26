@@ -8,6 +8,7 @@ import ScreenContent from './components/ScreenContent';
 import ScreenHeader from './components/ScreenHeader';
 import ScreenContainer from './components/ScreenContainer';
 import AddItemField from './components/AddItemField';
+import {generateItemID} from '../../utils';
 
 const TODO_ITEM = {
   id: undefined,
@@ -18,9 +19,20 @@ const TODO_ITEM = {
 
 type Props = {
   todoItems: Todo[];
+  removeToDoItem: (id: string) => void;
+  addToDoItem: (todoItem: {
+    name: any;
+    description: undefined;
+    id: string;
+    isDone: undefined;
+  }) => void;
 };
 
-const TodoItemsScreen: React.FC<Props> = ({todoItems}) => {
+const TodoItemsScreen: React.FC<Props> = ({
+  todoItems,
+  removeToDoItem,
+  addToDoItem,
+}) => {
   const [todoItemName, setToDoItem] = useState(undefined);
   const history = useHistory();
 
@@ -32,19 +44,26 @@ const TodoItemsScreen: React.FC<Props> = ({todoItems}) => {
       />
       <ScreenContent>
         <AddItemField
+          todItemName={todoItemName}
           setToDoItemName={(itemName) => setToDoItem(itemName)}
-          addItemToTodList={() =>
-            console.log('Adds item to the list..', {
-              ...TODO_ITEM,
-              ...{name: todoItemName},
-            })
-          }
+          addItemToTodList={() => {
+            if (todoItemName) {
+              addToDoItem({
+                ...TODO_ITEM,
+                ...{
+                  id: generateItemID(),
+                  name: todoItemName,
+                },
+              });
+              setToDoItem(undefined);
+            }
+          }}
         />
         {todoItems.map(({name, id}, key) => (
           <RowToDoItem
             key={key}
             name={name}
-            removeRowItem={() => console.log('Item removed...')}
+            removeRowItem={() => removeToDoItem(id)}
             viewRowItem={() => history.push(`/todo/${id}`)}
           />
         ))}

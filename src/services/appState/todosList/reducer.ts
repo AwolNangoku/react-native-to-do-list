@@ -3,18 +3,25 @@ import {createReducer} from '@reduxjs/toolkit';
 import {listTodos, addToDo, removeToDo, findTodo} from './actions';
 import {Todo} from './types';
 
-const initialState: Todo[] = [];
+const initialState = {
+  todoItems: [],
+};
 
 const todosList = createReducer(initialState, {
-  [listTodos]: (state) => state,
-  [addToDo]: (state, action) => [...state, action.payload],
-  [removeToDo]: (state, action) =>
-    state.filter(
-      (todo) =>
-        todo.name !== action.payload.name &&
-        todo.description !== action.payload.description,
-    ),
-  [findTodo]: (state, action) =>
+  ['LIST_TODOS']: (state) => state,
+  ['ADD_TO_DO']: (state, action) => ({
+    ...state,
+    ...{todoItems: [...state.todoItems, action.payload]},
+  }),
+  ['REMOVE_TO_DO']: (state, action) => ({
+    ...state,
+    ...{
+      todoItems: state.todoItems.filter(
+        (todoItem) => todoItem.id !== action.payload,
+      ),
+    },
+  }),
+  ['FIND_TODO']: (state, action) =>
     state.filter(
       (todo) =>
         todo.name === action.payload.name &&
