@@ -1,17 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Container} from './styled';
 
 const ScreenContainer: React.FC = ({children}) => (
-  <View
-    style={{
-      padding: 20,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-    {children}
-  </View>
+  <Container>{children}</Container>
 );
 
 export default ScreenContainer;
