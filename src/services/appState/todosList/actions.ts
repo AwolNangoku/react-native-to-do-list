@@ -1,12 +1,22 @@
-// @ts-ignore
-import {createAction} from '@reduxjs/toolkit';
+import {Todo} from './types';
 
-const listTodos = createAction('LIST_TODOS');
+const listTodos = () => ({
+  type: 'LIST_TODOS',
+});
 
-const findTodo = createAction('FIND_TODO');
+const findTodo = (payload: string) => ({
+  type: 'FIND_TODO',
+  payload,
+});
 
-const addToDo = createAction('ADD_TO_DO');
+const addToDo = (payload: Todo) => ({
+  type: 'ADD_TO_DO',
+  payload,
+});
 
-const removeToDo = createAction('REMOVE_TO_DO');
+const removeToDo = (payload: string) => ({
+  type: 'REMOVE_TO_DO',
+  payload,
+});
 
 export {listTodos, addToDo, removeToDo, findTodo};
