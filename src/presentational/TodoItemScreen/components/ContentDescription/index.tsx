@@ -7,6 +7,7 @@ type Props = {
 
 const ContentDescription: React.FC<Props> = ({description}) => (
   <View style={{padding: 10}}>
+    <Text>Item description:</Text>
     <Text>{description}</Text>
   </View>
 );

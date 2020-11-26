@@ -19,4 +19,14 @@ const removeToDo = (payload: string) => ({
   payload,
 });
 
-export {listTodos, addToDo, removeToDo, findTodo};
+const editToDoItem = (payload: {id: string; todoItem: Todo}) => ({
+  type: 'EDIT_TO_DO',
+  payload,
+});
+
+const saveToDoItem = (payload: Todo) => ({
+  type: 'SAVE_TO_DO',
+  payload,
+});
+
+export {listTodos, addToDo, removeToDo, findTodo, editToDoItem, saveToDoItem};

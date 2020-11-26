@@ -6,6 +6,7 @@ type Props = {
 };
 const ContentHeader: React.FC<Props> = ({title}) => (
   <View style={{padding: 10}}>
+    <Text>Item name:</Text>
     <Text>{title}</Text>
   </View>
 );

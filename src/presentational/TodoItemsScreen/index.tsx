@@ -20,6 +20,7 @@ const TODO_ITEM = {
 type Props = {
   todoItems: Todo[];
   removeToDoItem: (id: string) => void;
+  editToDoItem: (todoItem: {id: string; todoItem: Todo}) => void;
   addToDoItem: (todoItem: {
     name: any;
     description: undefined;
@@ -32,10 +33,11 @@ const TodoItemsScreen: React.FC<Props> = ({
   todoItems,
   removeToDoItem,
   addToDoItem,
+  editToDoItem,
 }) => {
   const [todoItemName, setToDoItem] = useState(undefined);
-  const history = useHistory();
 
+  const history = useHistory();
   return (
     <ScreenContainer>
       <ScreenHeader
@@ -64,7 +66,14 @@ const TodoItemsScreen: React.FC<Props> = ({
             key={key}
             name={name}
             removeRowItem={() => removeToDoItem(id)}
-            viewRowItem={() => history.push(`/todo/${id}`)}
+            viewRowItem={() => {
+              const todoItem = todoItems.filter(
+                (todoItem) => todoItem.id === id,
+              )[0];
+
+              editToDoItem({id, todoItem});
+              history.push(`/todo/${id}`);
+            }}
           />
         ))}
       </ScreenContent>

@@ -3,6 +3,7 @@ import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   todoItems: [],
+  todoItem: undefined,
 };
 
 const todosList = createReducer(initialState, {
@@ -19,12 +20,30 @@ const todosList = createReducer(initialState, {
       ),
     },
   }),
-  ['FIND_TODO']: (state, action) =>
-    state.filter(
-      (todo) =>
-        todo.name === action.payload.name &&
-        todo.description === action.payload.description,
-    )[0],
+  ['FIND_TODO']: (state, action) => ({
+    ...state,
+    ...{
+      todoItems: state.todoItems.filter(
+        (todoItem) => todoItem.id === action.payload,
+      )[0],
+    },
+  }),
+  ['EDIT_TO_DO']: (state, action) => ({
+    ...state,
+    ...{
+      todoItems: state.todoItems.filter(
+        (todoItem) => todoItem.id !== action.payload.id,
+      ),
+      todoItem: action.payload.todoItem,
+    },
+  }),
+  ['SAVE_TO_DO']: (state, action) => ({
+    ...state,
+    ...{
+      todoItems: [...state.todoItems, action.payload],
+      todoItem: undefined,
+    },
+  }),
 });
 
 export default todosList;

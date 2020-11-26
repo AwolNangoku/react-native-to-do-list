@@ -2,7 +2,7 @@ import React from 'react';
 // @ts-ignore
 import {NativeRouter, Route} from 'react-router-native';
 import ConnectedTodoItemsScreen from './container/ConnectedTodoItemsScreen/';
-import TodoItemScreen from './presentational/TodoItemScreen';
+import ConnectedTodoItemScreen from './container/ConnectedTodoItemScreen/';
 
 const App = () => (
   <NativeRouter>
@@ -10,7 +10,7 @@ const App = () => (
       <ConnectedTodoItemsScreen />
     </Route>
     <Route exact path="/todo/:id">
-      <TodoItemScreen />
+      <ConnectedTodoItemScreen />
     </Route>
   </NativeRouter>
 );
