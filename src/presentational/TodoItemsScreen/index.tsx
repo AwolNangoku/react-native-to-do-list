@@ -8,7 +8,8 @@ import ScreenContent from './components/ScreenContent';
 import ScreenHeader from './components/ScreenHeader';
 import ScreenContainer from './components/ScreenContainer';
 import AddItemField from './components/AddItemField';
-import {generateItemID} from '../../utils';
+import {generateItemID, sharingContent} from '../../utils';
+import ShareButton from '../screenComponents/Buttons/ShareButton';
 
 const TODO_ITEM = {
   id: undefined,
@@ -44,6 +45,11 @@ const TodoItemsScreen: React.FC<Props> = ({
         headerTitle="Tasks in your to do list"
         itemsCount={todoItems.length}
       />
+      <ShareButton
+        buttonTitle="Share Items"
+        sharingContent={sharingContent(todoItems)}
+      />
+
       <ScreenContent>
         <AddItemField
           todItemName={todoItemName}
