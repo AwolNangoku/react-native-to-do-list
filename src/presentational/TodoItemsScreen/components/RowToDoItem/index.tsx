@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, GestureResponderEvent} from 'react-native';
 import {Container, NameContainer, ActionContainer} from './styled';
 
 type Props = {
-  name: string;
+  title: string;
   removeRowItem: () => GestureResponderEvent | void;
   viewRowItem: () => GestureResponderEvent | void;
 };
@@ -26,10 +26,10 @@ const RowItemAction: React.FC<ActionProps> = ({
   </ActionContainer>
 );
 
-const RowToDoItem: React.FC<Props> = ({name, removeRowItem, viewRowItem}) => (
+const RowToDoItem: React.FC<Props> = ({title, removeRowItem, viewRowItem}) => (
   <Container>
     <NameContainer>
-      <Text>{name && name.toUpperCase()}</Text>
+      <Text>{title && title.toUpperCase()}</Text>
     </NameContainer>
 
     <RowItemAction

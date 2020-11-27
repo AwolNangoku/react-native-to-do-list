@@ -13,7 +13,7 @@ import ShareButton from '../screenComponents/Buttons/ShareButton';
 
 const TODO_ITEM = {
   id: undefined,
-  name: undefined,
+  title: undefined,
   description: undefined,
   isDone: undefined,
 };
@@ -23,7 +23,7 @@ type Props = {
   removeToDoItem: (id: string) => void;
   editToDoItem: (todoItem: {id: string; todoItem: Todo}) => void;
   addToDoItem: (todoItem: {
-    name: any;
+    title: any;
     description: undefined;
     id: string;
     isDone: undefined;
@@ -36,7 +36,7 @@ const TodoItemsScreen: React.FC<Props> = ({
   addToDoItem,
   editToDoItem,
 }) => {
-  const [todoItemName, setToDoItem] = useState(undefined);
+  const [todoItemTitle, setToDoItemTitle] = useState(undefined);
 
   const history = useHistory();
   return (
@@ -51,27 +51,28 @@ const TodoItemsScreen: React.FC<Props> = ({
         isDisabled={todoItems.length === 0}
       />
 
+      <AddItemField
+        todoItemTitle={todoItemTitle}
+        setToDoItemTitle={(itemTitle) => setToDoItemTitle(itemTitle)}
+        addItemToTodList={() => {
+          if (todoItemTitle) {
+            addToDoItem({
+              ...TODO_ITEM,
+              ...{
+                id: generateItemID(),
+                title: todoItemTitle,
+              },
+            });
+            setToDoItemTitle(undefined);
+          }
+        }}
+      />
+
       <ScreenContent>
-        <AddItemField
-          todItemName={todoItemName}
-          setToDoItemName={(itemName) => setToDoItem(itemName)}
-          addItemToTodList={() => {
-            if (todoItemName) {
-              addToDoItem({
-                ...TODO_ITEM,
-                ...{
-                  id: generateItemID(),
-                  name: todoItemName,
-                },
-              });
-              setToDoItem(undefined);
-            }
-          }}
-        />
-        {todoItems.map(({name, id}, key) => (
+        {todoItems.map(({title, id}, key) => (
           <RowToDoItem
             key={key}
-            name={name}
+            title={title}
             removeRowItem={() => removeToDoItem(id)}
             viewRowItem={() => {
               const todoItem = todoItems.filter(

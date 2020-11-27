@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native';
 
 const ScreenContent: React.FC = ({children}) => (
-  <View style={{padding: 20}}>{children}</View>
+  <ScrollView>{children}</ScrollView>
 );
 
 export default ScreenContent;

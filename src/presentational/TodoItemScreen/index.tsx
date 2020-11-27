@@ -24,7 +24,7 @@ const TodoItemScreen: React.FC<Props> = ({todoItem, saveToDoItem}) => {
     <ScreenContainer>
       <ScreenHeader headerTitle="Update To do" />
       <ScreenContent>
-        <ContentHeader title={todoItem.name} />
+        <ContentHeader title={todoItem.title} />
 
         <ContentDescription description={todoItem.description} />
 

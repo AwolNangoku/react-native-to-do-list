@@ -15,7 +15,7 @@ const sharingContent = (todoItems: Todo[]) => {
   todoItems.forEach((todoItem) => {
     shareContent =
       shareContent +
-      `Name: \n${todoItem.name}\nDescription: ${
+      `Title: \n${todoItem.title}\nDescription: ${
         todoItem.description
       }\nStatus: ${todoItem.isDone ? 'Completed' : 'Not done'}\n\n`;
   });
