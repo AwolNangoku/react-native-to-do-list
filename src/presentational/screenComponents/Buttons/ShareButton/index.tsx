@@ -4,8 +4,13 @@ import {Share, Button} from 'react-native';
 type Props = {
   buttonTitle: string;
   sharingContent: string;
+  isDisabled: boolean;
 };
-const ShareButton: React.FC<Props> = ({sharingContent, buttonTitle}) => {
+const ShareButton: React.FC<Props> = ({
+  sharingContent,
+  isDisabled,
+  buttonTitle,
+}) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -20,7 +25,7 @@ const ShareButton: React.FC<Props> = ({sharingContent, buttonTitle}) => {
       console.log('Failed sharing content');
     }
   };
-  return <Button onPress={onShare} title={buttonTitle} />;
+  return <Button disabled={isDisabled} onPress={onShare} title={buttonTitle} />;
 };
 
 export default ShareButton;

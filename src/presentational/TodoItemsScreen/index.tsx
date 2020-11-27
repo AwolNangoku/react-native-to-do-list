@@ -48,6 +48,7 @@ const TodoItemsScreen: React.FC<Props> = ({
       <ShareButton
         buttonTitle="Share Items"
         sharingContent={sharingContent(todoItems)}
+        isDisabled={todoItems.length === 0}
       />
 
       <ScreenContent>
