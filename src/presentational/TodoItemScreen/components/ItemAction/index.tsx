@@ -11,7 +11,7 @@ const ItemAction: React.FC<Props> = ({actionTitle, itemAction}) => (
       <View>
         <Text
           style={{
-            color: actionTitle === 'Save description' ? '#00a8fd' : undefined,
+            color: actionTitle === 'Save todo' ? '#00a8fd' : undefined,
           }}>
           {actionTitle}
         </Text>

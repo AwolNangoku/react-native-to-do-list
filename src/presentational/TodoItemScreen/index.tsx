@@ -17,9 +17,8 @@ type Props = {
 };
 
 const TodoItemScreen: React.FC<Props> = ({todoItem, saveToDoItem}) => {
-  const [description, setDescription] = useState(todoItem.description);
+  const [description, setDescription] = useState(undefined);
   const history = useHistory();
-  const {id} = useParams();
 
   return (
     <ScreenContainer>
@@ -30,26 +29,26 @@ const TodoItemScreen: React.FC<Props> = ({todoItem, saveToDoItem}) => {
         <ContentDescription description={todoItem.description} />
 
         <DescriptionField
+          description={description}
           updateDescription={(description) => setDescription(description)}
         />
 
         <ActionsContainer>
-          <ItemAction
-            actionTitle="Edit description"
-            itemAction={() => console.log('Editing To-do description...', id)}
-          />
+          <ItemAction actionTitle="Back" itemAction={() => history.push('/')} />
 
           <ItemAction
-            actionTitle="Save description"
+            actionTitle="Save todo"
             itemAction={() => {
-              saveToDoItem({
-                ...todoItem,
-                ...{
-                  isDone: description ? true : false,
-                  description,
-                },
-              });
-              history.push('/');
+              if (description) {
+                saveToDoItem({
+                  ...todoItem,
+                  ...{
+                    isDone: description ? true : false,
+                    description,
+                  },
+                });
+                setDescription(undefined);
+              }
             }}
           />
         </ActionsContainer>
