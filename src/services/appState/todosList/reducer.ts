@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const todosList = createReducer(initialState, {
-  ['LIST_TODOS']: (state) => state,
   ['ADD_TO_DO']: (state, action) => ({
     ...state,
     ...{todoItems: [...state.todoItems, action.payload]},
@@ -18,14 +17,6 @@ const todosList = createReducer(initialState, {
       todoItems: state.todoItems.filter(
         (todoItem) => todoItem.id !== action.payload,
       ),
-    },
-  }),
-  ['FIND_TODO']: (state, action) => ({
-    ...state,
-    ...{
-      todoItems: state.todoItems.filter(
-        (todoItem) => todoItem.id === action.payload,
-      )[0],
     },
   }),
   ['EDIT_TO_DO']: (state, action) => ({
@@ -40,7 +31,7 @@ const todosList = createReducer(initialState, {
   ['SAVE_TO_DO']: (state, action) => ({
     ...state,
     ...{
-      todoItems: [...state.todoItems, action.payload],
+      todoItems: [action.payload, ...state.todoItems],
       todoItem: undefined,
     },
   }),

@@ -1,14 +1,5 @@
 import {Todo} from './types';
 
-const listTodos = () => ({
-  type: 'LIST_TODOS',
-});
-
-const findTodo = (payload: string) => ({
-  type: 'FIND_TODO',
-  payload,
-});
-
 const addToDo = (payload: Todo) => ({
   type: 'ADD_TO_DO',
   payload,
@@ -29,4 +20,4 @@ const saveToDoItem = (payload: Todo) => ({
   payload,
 });
 
-export {listTodos, addToDo, removeToDo, findTodo, editToDoItem, saveToDoItem};
+export {addToDo, removeToDo, editToDoItem, saveToDoItem};
